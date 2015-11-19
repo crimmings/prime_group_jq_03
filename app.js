@@ -37,17 +37,16 @@ function Team(name) {
 }
 
 /**
- * Randomize array element order in-place
+ * Randomize student array order in-place
  * Using Durstenfeld shuffle algorithm
  */
-function shuffleStudents(array){
-  for (var i = array.length - 1; i > 0; i--) {
+function shuffleStudents(){
+  for (var i = students.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
-    var temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
+    var temp = students[i];
+    students[i] = students[j];
+    students[j] = temp;
   }
-  return array;
 }
 
 console.log(shuffleStudents(students));
@@ -56,8 +55,7 @@ console.log(shuffleStudents(students));
  * Takes the list and divides it into teams
  */
 function createList(numTeams){
-    // output of randomizer(students) / number of teams
-  var shuffledStudents = shuffleStudents(students);
+  shuffleStudents();
   var teamsArray = [];
   for(var i=0; i< numTeams; i++) {
     teamsArray.push(new Team(i));
