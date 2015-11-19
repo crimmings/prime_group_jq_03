@@ -41,8 +41,8 @@ function Team(name) {
  * Using Durstenfeld shuffle algorithm
  */
 function shuffleStudents(array){
-  for (var i=array.length - 1; i > 0; i--) {
-    var j =Math.floor(Math.random() * (i + 1));
+  for (var i = array.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
     var temp = array[i];
     array[i] = array[j];
     array[j] = temp;
@@ -66,10 +66,10 @@ function createList(numTeams){
   //assigning students to the teams created in first for loop.
   for(var studentNum = 0; studentNum < students.length; studentNum++){
     var teamNum = studentNum  % numTeams;
-    console.log(studentNum, teamNum)
+    console.log(studentNum, teamNum);
     //  teamsArray[teamNum] is a team.
-    var thisStudentsTeam = teamsArray[teamNum];
-    thisStudentsTeam.members.push(shuffledStudents[studentNum]);//finished list for each team
+    var team = teamsArray[teamNum];
+    team.members.push(shuffledStudents[studentNum]);//finished list for each team
   }
 }
 console.log(createList(3));
