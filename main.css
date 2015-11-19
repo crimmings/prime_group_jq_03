@@ -1,6 +1,57 @@
 
+body {
+  font-family: "Interstate", sans-serif;
+  line-height: 24px;
+  font-size: 16px;
+  background-color: #07aa9e;
+  //*#48D1CC;*//
+}
+
+header {
+  width: width;
+  margin: 10px 10px;
+  padding: 10px 10px;
+  text-align: center;
+  color: white;
+}
+
+header p {
+  font-size: 100%;
+  letter-spacing: 1px;
+}
+
 
 form {
-  
-
+  width: auto;
+  margin: 10px 10px;
+  padding: 5px 5px;
+  text-align: center;
+  color:  #fff;
 }
+
+legend {
+  font-style: oblique;
+  color: white;
+}
+
+fieldset {
+  padding: 20px;
+  display: inline;
+  border: 1px solid  #708090;
+}
+
+
+input.radio {
+    display: inline;
+    margin: 10px;
+    padding: 10px;
+    width: auto;
+  }
+
+  input.submit {
+
+  }
+
+  h1 {
+    letter-spacing: 1px;
+  }

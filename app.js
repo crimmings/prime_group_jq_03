@@ -56,27 +56,44 @@ function createList(numTeams){
   shuffleStudents();
   var teamsArray = [];
   for(var i=0; i< numTeams; i++) {
-    teamsArray.push(new Team(i));
+    teamsArray.push(new Team(i + 1));
   }
   //assigning students to the teams created in first for loop.
   for(var studentNum = 0; studentNum < students.length; studentNum++){
     var teamNum = studentNum  % numTeams;
     //  teamsArray[teamNum] is a team.
     var team = teamsArray[teamNum];
-    team.members.push(shuffledStudents[studentNum]);//finished list for each team
+    team.members.push(students[studentNum]);//finished list for each team
   }
+  return teamsArray;
 }
 
 /**
  * Takes in a team instance and generates html displayed in .team.
  */
-function generateHtml(){
-  var shuffledTeams = createList();
-  var html = $('<div>');
+function generateTeamsHtml(numTeams){
+  var shuffledTeams = createList(numTeams);
+  var $div = $('<div>');
+
+
+//place team name on dom
+ for(var i = 0; i < shuffledTeams.length; i++){
+   var $ul =$('<ul>').text('Posse ' + shuffledTeams[i].name + ':');
+ $div.append($ul);
+ console.log(shuffledTeams);
+  for(var j=0; j < shuffledTeams[i].members.length; j++) {
+    $ul.append($('<li>').text(shuffledTeams[i].members[j]));
+  }
+console.log(shuffledTeams)
+ };
+
+
+
+
   // for each team append a team item p
   // for each student within the team, append a li to the team item
   //<div><p><ul>
-  return html;
+  return $div;
 }
 
 /**
@@ -91,7 +108,7 @@ function generateForm(onSubmit) {
 
   for (var numTeams = 2; numTeams <= 10; numTeams++) {
     $form.append('<input type="radio" name="buttons" required value="' +
-        numTeams + '">' + numTeams);
+        numTeams + '"/>' + numTeams);
   }
 
   $form.append('<input type="submit" name="submit" value="Generate">');
@@ -111,8 +128,10 @@ function generateForm(onSubmit) {
   return $form;
 }
 
+function onSubmit(value){
+ $('main').append(generateTeamsHtml(value));
+}
+
 $(document).ready(function() {
-  $('main').html(generateForm(function(data) {
-    console.log(data)
-  }))
+  $('main').html(generateForm(onSubmit))
 });
