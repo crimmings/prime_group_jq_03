@@ -1,3 +1,7 @@
+/**
+ * An app for creating randomized teams from a list of students
+ */
+
 var students = [
  'Chris Arnesen',
  'Ashley Steele',
@@ -24,58 +28,61 @@ var students = [
 ];
 
 
-//Team Constructor
-function Team (name) {
+/**
+ * Team class constructor
+ */
+function Team(name) {
   this.name = name;
   this.members = [];
-  }
+}
 
-  /** Randomize array element order in-place
-  *Using Durstenfeld shuffle algorithm
-  *
-  //javascript implementation of durstenfeld shuffle
-  */
-  function shuffleStudents(array){
-    for (var i=array.length - 1; i > 0; i--) {
+/**
+ * Randomize array element order in-place
+ * Using Durstenfeld shuffle algorithm
+ */
+function shuffleStudents(array){
+  for (var i=array.length - 1; i > 0; i--) {
     var j =Math.floor(Math.random() * (i + 1));
     var temp = array[i];
     array[i] = array[j];
     array[j] = temp;
   }
   return array;
-  }
-  console.log(shuffleStudents(students));
+}
 
+console.log(shuffleStudents(students));
 
-//function that takes the list and divides it into teams
+/**
+ * Takes the list and divides it into teams
+ */
 function createList(numTeams){
     // output of randomizer(students) / number of teams
   var shuffledStudents = shuffleStudents(students);
   var teamsArray = [];
-    for(var i=0; i< numTeams; i++) {
-      teamsArray.push(new Team(i));
-    }
-    console.log(teamsArray);
-//assigning students to the teams created in first for loop.
-    for(var studentNum = 0; studentNum < students.length; studentNum++){
+  for(var i=0; i< numTeams; i++) {
+    teamsArray.push(new Team(i));
+  }
+  console.log(teamsArray);
+  //assigning students to the teams created in first for loop.
+  for(var studentNum = 0; studentNum < students.length; studentNum++){
     var teamNum = studentNum  % numTeams;
     console.log(studentNum, teamNum)
     //  teamsArray[teamNum] is a team.
     var thisStudentsTeam = teamsArray[teamNum];
     thisStudentsTeam.members.push(shuffledStudents[studentNum]);//finished list for each team
-    }
-};
+  }
+}
 console.log(createList(3));
 
 
-
-  //function that takes in a team instance and generates html displayed in .team.
-  function generateHtml(){
-    var shuffledTeams = createList();
-    var html = $('<div>')
-    // for each team append a team item p
-    // for each student within the team, append a li to the team item
-
-    return html;
-  }
-//<div><p><ul>
+/**
+ * Takes in a team instance and generates html displayed in .team.
+ */
+function generateHtml(){
+  var shuffledTeams = createList();
+  var html = $('<div>');
+  // for each team append a team item p
+  // for each student within the team, append a li to the team item
+  //<div><p><ul>
+  return html;
+}
