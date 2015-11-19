@@ -1,5 +1,6 @@
 /**
  * An app for creating randomized teams from a list of students
+ * @author Ashley Steele, Charlotte Kroening, Chris Arnesen, John Crimmings, Sam Richard
  */
 
 var students = [
@@ -37,8 +38,7 @@ function Team(name) {
 }
 
 /**
- * Randomize student array order in-place
- * Using Durstenfeld shuffle algorithm
+ * Randomize student array order in-place using Durstenfeld shuffle algorithm
  */
 function shuffleStudents(){
   for (var i = students.length - 1; i > 0; i--) {
@@ -78,3 +78,41 @@ function generateHtml(){
   //<div><p><ul>
   return html;
 }
+
+/**
+ * Function for generating the radio button form for numTeams.
+ * Returns jQuery HTMLElement
+ */
+function generateForm(onSubmit) {
+
+  var $form = $('<form>');
+
+  $form.append('<p>Select how many teams you\'d like to make!</p>');
+
+  for (var numTeams = 2; numTeams <= 10; numTeams++) {
+    $form.append('<input type="radio" name="buttons" required value="' +
+        numTeams + '">' + numTeams);
+  }
+
+  $form.append('<input type="submit" name="submit" value="Generate">');
+
+  $form.on('submit', function(event) {
+
+    event.preventDefault();
+
+    var value = $form.serializeArray().find(function(element) {
+      return element.name === 'buttons';
+    }).value;
+
+    onSubmit(value);
+
+  });
+
+  return $form;
+}
+
+$(document).ready(function() {
+  $('main').html(generateForm(function(data) {
+    console.log(data)
+  }))
+});
