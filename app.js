@@ -49,8 +49,6 @@ function shuffleStudents(){
   }
 }
 
-console.log(shuffleStudents(students));
-
 /**
  * Takes the list and divides it into teams
  */
@@ -60,18 +58,14 @@ function createList(numTeams){
   for(var i=0; i< numTeams; i++) {
     teamsArray.push(new Team(i));
   }
-  console.log(teamsArray);
   //assigning students to the teams created in first for loop.
   for(var studentNum = 0; studentNum < students.length; studentNum++){
     var teamNum = studentNum  % numTeams;
-    console.log(studentNum, teamNum);
     //  teamsArray[teamNum] is a team.
     var team = teamsArray[teamNum];
     team.members.push(shuffledStudents[studentNum]);//finished list for each team
   }
 }
-console.log(createList(3));
-
 
 /**
  * Takes in a team instance and generates html displayed in .team.
